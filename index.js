@@ -22,33 +22,37 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get('/', (req, res) => {
-  res.send(`<h1>Welcome!</h1>`);
-})
-
-app.use('/api', router);
-
-client.close();
-
-// async function run() {
-//   try {
-
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
 
-//     // here operations
-//   } catch (error) {
-//     console.error(error)
-//   } finally {
-//     await client.close()
-//   }
-// }
-// run()
+
+async function run() {
+  try {
+    await client.connect()
+
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+    app.get('/', (req, res) => {
+      res.send(`<h1>Welcome!</h1>`);
+    })
+
+    app.use('/api', router);
+
+    // here operations
+  } catch (error) {
+    console.error(error)
+  } finally {
+    await client.close()
+  }
+}
+run()
+
 
 app.listen(port, () => {
   console.log(`Server Running At Port: http://localhost:${port}`);
 })
+
+
 
 
 

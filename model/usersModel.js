@@ -9,7 +9,6 @@ const client = new MongoClient(uri, {
   }
 })
 
-client.connect()
 
 const db = client.db('allUsers');
 const db2 = client.db('manuProducts')
