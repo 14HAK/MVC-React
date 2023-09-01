@@ -33,10 +33,6 @@ async function run() {
   try {
     await client.connect()
 
-    app.listen(port, () => {
-      console.log(`Server Running At Port: http://localhost:${port}`);
-    })
-
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
@@ -45,6 +41,10 @@ async function run() {
   } catch (error) {
     console.error(error)
   } finally {
+
+    app.listen(port, () => {
+      console.log(`Server Running At Port: http://localhost:${port}`);
+    })
     await client.close()
   }
 }
