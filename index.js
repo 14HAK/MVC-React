@@ -41,13 +41,14 @@ async function run() {
   } catch (error) {
     console.error(error)
   } finally {
-
-    app.listen(port, () => {
-      console.log(`Server Running At Port: http://localhost:${port}`);
-    })
     await client.close()
   }
 }
+
+app.listen(port, () => {
+  console.log(`Server Running At Port: http://localhost:${port}`);
+})
+
 run()
 
 
