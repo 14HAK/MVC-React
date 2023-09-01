@@ -26,17 +26,16 @@ app.get('/', (req, res) => {
   res.send(`<h1>Welcome!</h1>`);
 })
 
-app.use('/api', router);
+
 
 
 async function run() {
   try {
-    await client.connect()
 
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
-
+    app.use('/api', router);
     // here operations
   } catch (error) {
     console.error(error)
@@ -44,14 +43,11 @@ async function run() {
     await client.close()
   }
 }
+run()
 
 app.listen(port, () => {
   console.log(`Server Running At Port: http://localhost:${port}`);
 })
-
-run()
-
-
 
 
 

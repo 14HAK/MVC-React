@@ -1,6 +1,6 @@
 
 const express = require('express');
-const { userCollection, manuCollection } = require('../model/usersModel');
+const { userCollection, menuCollection } = require('../model/usersModel');
 
 express.json()
 
@@ -9,13 +9,13 @@ const getUser = async (req, res) => {
   res.send(result)
 }
 
-const menu = async (req, res) => {
-  const result = await manuCollection.find({}).toArray();
+const manu = async (req, res) => {
+  const result = await menuCollection.find({}).toArray();
   res.send(result);
 }
 
 
 module.exports = {
   getUser,
-  menu
+  manu
 };

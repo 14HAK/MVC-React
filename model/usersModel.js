@@ -9,13 +9,15 @@ const client = new MongoClient(uri, {
   }
 })
 
+client.connect()
+
 const db = client.db('allUsers');
 const db2 = client.db('manuProducts')
 
 const userCollection = db.collection('users');
-const manuCollection = db2.collection('everyItems')
+const menuCollection = db2.collection('everyItems')
 
 module.exports = {
   userCollection,
-  manuCollection
+  menuCollection
 };
