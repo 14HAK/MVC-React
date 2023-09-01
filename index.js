@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
   res.send(`<h1>Welcome!</h1>`);
 })
 
-
+app.use('/api', router);
 
 
 async function run() {
@@ -35,7 +35,7 @@ async function run() {
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
-    app.use('/api', router);
+
     // here operations
   } catch (error) {
     console.error(error)
