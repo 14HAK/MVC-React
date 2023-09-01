@@ -17,6 +17,17 @@ const client = new MongoClient(uri, {
 const app = express();
 app.use(express.json())
 
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next()
+})
+
+app.get('/', (req, res) => {
+  res.send(`<h1>Welcome!</h1>`);
+})
+
+app.use('/api', router);
+
 
 async function run() {
   try {
@@ -25,13 +36,9 @@ async function run() {
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
-    app.get('/', (req, res) => {
-      res.send(`<h1>Welcome!</h1>`);
+    app.listen(port, () => {
+      console.log(`Server Running At Port: http://localhost:${port}`);
     })
-
-    app.use('/api', router);
-
-
     // here operations
   } catch (error) {
     console.error(error)
@@ -40,11 +47,6 @@ async function run() {
   }
 }
 run()
-
-
-app.listen(port, () => {
-  console.log(`Server Running At Port: http://localhost:${port}`);
-})
 
 
 
