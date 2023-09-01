@@ -33,10 +33,6 @@ async function run() {
 
 
     // here operations
-    app.listen(port, () => {
-      console.log(`Server Running At Port: http://localhost:${port}`);
-    })
-
   } catch (error) {
     console.error(error)
   } finally {
@@ -45,6 +41,10 @@ async function run() {
 }
 run()
 
+
+app.listen(port, () => {
+  console.log(`Server Running At Port: http://localhost:${port}`);
+})
 
 
 
