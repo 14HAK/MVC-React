@@ -18,11 +18,6 @@ const app = express();
 app.use(express.json())
 
 
-app.listen(port, () => {
-  console.log(`Server Running At Port: http://localhost:${port}`);
-})
-
-
 async function run() {
   try {
     await client.connect()
@@ -38,6 +33,9 @@ async function run() {
 
 
     // here operations
+    app.listen(port, () => {
+      console.log(`Server Running At Port: http://localhost:${port}`);
+    })
 
   } catch (error) {
     console.error(error)
