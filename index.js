@@ -33,12 +33,14 @@ async function run() {
   try {
     await client.connect()
 
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-
     app.listen(port, () => {
       console.log(`Server Running At Port: http://localhost:${port}`);
     })
+
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+
     // here operations
   } catch (error) {
     console.error(error)
